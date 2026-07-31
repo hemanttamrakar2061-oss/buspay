@@ -2,6 +2,8 @@ package com.example.first.screens
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.util.Log
+import androidx.annotation.OptIn
 
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
@@ -26,6 +28,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 
 import androidx.navigation.NavController
+import com.google.mlkit.vision.barcode.BarcodeScanner
 
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
@@ -292,13 +295,13 @@ fun ScannerScreen(
 
 
 
-@androidx.annotation.OptIn(ExperimentalGetImage::class)
+@OptIn(ExperimentalGetImage::class)
 
 private fun processImage(
 
     imageProxy: ImageProxy,
 
-    scanner: com.google.mlkit.vision.barcode.BarcodeScanner,
+    scanner: BarcodeScanner,
 
     onResult: (String)->Unit
 
@@ -357,7 +360,7 @@ private fun processImage(
 
 
 
-                    android.util.Log.d(
+                    Log.d(
 
                         "ML_QR",
 
@@ -386,7 +389,7 @@ private fun processImage(
         .addOnFailureListener {
 
 
-            android.util.Log.d(
+            Log.d(
 
                 "ML_QR",
 
